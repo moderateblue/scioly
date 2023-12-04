@@ -46,7 +46,9 @@ numbers = [
 print("welcome to morse code practice-r")
 print("type stop to stop at any time")
 
-usr = input("random numbers only (n) or random letters only (l) or timed (t): ")
+print("random numbers only infinite (rn)\nrandom letters only infinite (rl)\nnumbers in order infinite (n)\nletters in order infinite (l)\ntimed (t)")
+
+usr = input("what mode would you like to use: ")
 
 run = True
 
@@ -145,7 +147,7 @@ def on_release_number(key):
             for x in charlist:
                 print(x, end = "")
 
-if usr == "n":
+if usr == "rn":
     while run:
         global number 
         number = random.choice(numbers)
@@ -153,7 +155,7 @@ if usr == "n":
         with keyboard.Listener(on_press = on_press, on_release = on_release_number) as listener:
             listener.join()
 
-elif usr == "l":
+elif usr == "rl":
     while run:
         global letter
         letter = random.choice(list(letters.keys()))
@@ -180,3 +182,18 @@ elif usr == "t":
     stop = time.perf_counter()
     print("\ntime: " + str(stop - start) + " seconds")
     print("accuracy: " + str(acc/36 * 100) + "% (" + str(acc) + "/36)")
+
+elif usr == "n":
+    while run:
+        for number in numbers:
+            print("\n" + str(numbers.index(number)))
+            with keyboard.Listener(on_press = on_press, on_release = on_release_number) as listener:
+                listener.join()
+
+elif usr == "l":
+    while run:
+        for letter in letters:
+            print("\n" + letter)
+            # Collect events until released
+            with keyboard.Listener(on_press = on_press, on_release = on_release_letter) as listener:
+                listener.join()
