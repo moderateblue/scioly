@@ -46,7 +46,13 @@ numbers = [
 print("welcome to morse code practice-r")
 print("type stop to stop at any time")
 
-print("random numbers only infinite (rn)\nrandom letters only infinite (rl)\nnumbers in order infinite (n)\nletters in order infinite (l)\ntimed (t)")
+print("random numbers only infinite (rn)\n"
+      "random letters only infinite (rl)\n"
+      "numbers in order infinite (n)\n"
+      "letters in order infinite (l)\n"
+      "timed all (t)\n"
+      "timed numbers (tn)\n"
+      "timed letters (tl)")
 
 usr = input("what mode would you like to use: ")
 
@@ -173,8 +179,7 @@ elif usr == "t":
         print("\n" + letter)
         with keyboard.Listener(on_press = on_press, on_release = on_release_letter) as listener:
             listener.join()
-    for i in numbers:
-        number = i
+    for number in numbers:
         print("\n" + str(numbers.index(number)))
         with keyboard.Listener(on_press = on_press, on_release = on_release_number) as listener:
             listener.join()
@@ -197,3 +202,29 @@ elif usr == "l":
             # Collect events until released
             with keyboard.Listener(on_press = on_press, on_release = on_release_letter) as listener:
                 listener.join()
+
+elif usr == "tn":
+    acc = 10
+    start = time.perf_counter()
+
+    for number in numbers:
+        print("\n" + str(numbers.index(number)))
+        with keyboard.Listener(on_press = on_press, on_release = on_release_number) as listener:
+            listener.join()
+    
+    stop = time.perf_counter()
+    print("\ntime: " + str(stop - start) + " seconds")
+    print("accuracy: " + str(acc/10 * 100) + "% (" + str(acc) + "/10)")
+
+elif usr == "tl":
+    acc = 26
+    start = time.perf_counter()
+
+    for letter in letters:
+        print("\n" + letter)
+        with keyboard.Listener(on_press = on_press, on_release = on_release_letter) as listener:
+            listener.join()
+    
+    stop = time.perf_counter()
+    print("\ntime: " + str(stop - start) + " seconds")
+    print("accuracy: " + str(acc/26 * 100) + "% (" + str(acc) + "/26)")
