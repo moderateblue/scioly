@@ -1,7 +1,4 @@
-import random
-import time
-import sys
-import msvcrt
+import random, time, sys, msvcrt, os
 from pynput import keyboard
 
 letters = {
@@ -92,12 +89,15 @@ def on_release_letter(key):
             msvcrt.getch()
         return False
     elif charlist == list("stop"):
-        charlist.clear()
-        global run
-        run = False
         while msvcrt.kbhit():
             msvcrt.getch()
-        return False
+        os._exit(0)
+        #charlist.clear()
+        #global run
+        #run = False
+        #while msvcrt.kbhit():
+        #    msvcrt.getch()
+        #return False
     elif key == keyboard.Key.backspace:
         if len(charlist) > 0:
             charlist.pop()
@@ -123,12 +123,15 @@ def on_release_number(key):
             msvcrt.getch()
         return False
     elif charlist == list("stop"):
-        charlist.clear()
-        global run
-        run = False
         while msvcrt.kbhit():
             msvcrt.getch()
-        return False
+        os._exit(0)
+        #charlist.clear()
+        #global run
+        #run = False
+        #while msvcrt.kbhit():
+        #    msvcrt.getch()
+        #return False
     elif key == keyboard.Key.backspace:
         if len(charlist) > 0:
             charlist.pop()
