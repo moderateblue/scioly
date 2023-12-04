@@ -46,7 +46,7 @@ numbers = [
 print("welcome to morse code practice-r")
 print("type stop to stop at any time")
 
-usr = input("number (n) or letter (l) or timed (t): ")
+usr = input("random numbers only (n) or random letters only (l) or timed (t): ")
 
 run = True
 
