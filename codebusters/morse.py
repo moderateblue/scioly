@@ -80,6 +80,9 @@ def on_release_letter(key):
     elif len(charlist) > 5:
         charlist.clear()
         print("\n" + letters[letter], end = "")
+        if 'acc' in globals():
+            global acc
+            acc -= 1
         while msvcrt.kbhit():
             msvcrt.getch()
         return False
@@ -114,6 +117,9 @@ def on_release_number(key):
     elif len(charlist) > 5:
         charlist.clear()
         print("\n" + number, end = "")
+        if 'acc' in globals():
+            global acc
+            acc -= 1
         while msvcrt.kbhit():
             msvcrt.getch()
         return False
@@ -157,6 +163,8 @@ elif usr == "l":
             listener.join()
 
 elif usr == "t":
+    global acc
+    acc = 36
     start = time.perf_counter()
 
     for letter in letters:
@@ -171,3 +179,4 @@ elif usr == "t":
     
     stop = time.perf_counter()
     print("\ntime: " + str(stop - start) + " seconds")
+    print("accuracy: " + str(acc/36 * 100) + "% (" + str(acc) + "/36)")
